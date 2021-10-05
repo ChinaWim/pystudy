@@ -17,9 +17,9 @@ d = {
     "offset": "0",
     "orderType": "1",
     "pageNo": "1",
-    "pageSize": "20",
-    "rid": "R_SO_4_29810786",
-    "threadId": "R_SO_4_29810786"
+    "pageSize": "10",
+    "rid": "R_SO_4_1428243603",
+    "threadId": "R_SO_4_1428243603"
 }
 e = '010001'
 f = '00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7',
@@ -51,12 +51,25 @@ def to16(d):
     return d
 
 
+def showComment(comment_data):
+    for com in comment_data:
+        print("user:" + com["user"]["nickname"])
+        print("content:" + com["content"])
+        print("-----")
+    return
+
+
 url = "https://music.163.com/weapi/comment/resource/comments/get"
 data = {
-    "referer": "https://music.163.com/song?id=29810786",
     "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36",
     "params": getParams(json.dumps(d)),
     "encSecKey": getSecKey()
 }
 resp = requests.post(url=url, data=data)
-print(resp.text)
+json_data = resp.json()
+data = json_data["data"]
+hotComments = data["hotComments"]
+comments = data["comments"]
+
+showComment(hotComments)
+# showComment(comments)
