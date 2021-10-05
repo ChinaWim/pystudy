@@ -2,7 +2,7 @@
 # pip install -i https://mirrors.aliyun.com/pypi/simple/ bs4
 #导入
 import requests
-from 爬虫.base.bs4 import BeautifulSoup
+from spider.base.bs4 import BeautifulSoup
 #解析数据
 url = "http://www.baidu.com"
 resp = requests.get(url)
