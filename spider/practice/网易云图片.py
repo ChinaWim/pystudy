@@ -2,6 +2,7 @@
 # child_href = /html/body/div[3]/div/ul/li[1]/div/a
 import requests
 from lxml import etree
+import time
 
 url = "https://music.163.com/discover/playlist"
 detail = "https://music.163.com"
@@ -14,6 +15,7 @@ params = {
 headers = {
     "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36",
 }
+
 
 def format_filename(img):
     file_prefix = "./img/"
@@ -34,8 +36,8 @@ for link in link_list:
     detail_resp.close()
     with open(file_name, mode="wb") as f:
         img_resp = requests.get(url=img)
-        f.write(img_resp.content)
+        f.write(img_resp.content)  # content 是字节
+        time.sleep(0.5)
+        print("over!")
 resp.close()
-print("over!!")
-
-
+print("all over!!!")
